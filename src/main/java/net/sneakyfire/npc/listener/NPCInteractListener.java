@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
@@ -32,8 +33,12 @@ public class NPCInteractListener implements Listener {
                         list.add(iCloudService);
                     }
                 });
+                ItemStack glassPane = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 7);
+                ItemMeta glassMeta = glassPane.getItemMeta();
+                glassMeta.setDisplayName("§7");
+                glassPane.setItemMeta(glassMeta);
                 for (int i = 0; i < 9; i++) {
-                    inventory.setItem(i, new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 7));
+                    inventory.setItem(i, glassPane);
                 }
                 for (int i = 9; i < list.size() + 8; i++) {
                     int finalI = i;
