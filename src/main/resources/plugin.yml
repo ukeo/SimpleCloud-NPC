@@ -1,0 +1,7 @@
+name: SimpleCloud-NPC
+version: 1.0
+author: Espen
+main: net.sneakyfire.npc.SimpleCloudNPC
+
+commands:
+  cloudnpc:

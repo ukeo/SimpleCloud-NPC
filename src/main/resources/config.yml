@@ -1,0 +1,25 @@
+#
+# ____  _  _      ____  _     _____ ____  _     ____  _     ____        _      ____  ____
+#/ ___\/ \/ \__/|/  __\/ \   /  __//   _\/ \   /  _ \/ \ /\/  _ \      / \  /|/  __\/   _\
+#|    \| || |\/|||  \/|| |   |  \  |  /  | |   | / \|| | ||| | \|_____ | |\ |||  \/||  /
+#\___ || || |  |||  __/| |_/\|  /_ |  \__| |_/\| \_/|| \_/|| |_/|\____\| | \|||  __/|  \__
+#\____/\_/\_/  \|\_/   \____/\____\\____/\____/\____/\____/\____/      \_/  \|\_/   \____/
+# Version 1.0 by Espen#0666. Copyright (c) 2021 Espen da Silva. All rights reserved!
+#
+Inventory:
+  ServerFull:
+    name: "§a%server%"
+    material: "STAINED_CLAY"
+    subId: 1
+    lore:
+      - "§7Players&8: §a%online_players%§7/§c%max_players%"
+      - "§7Map§8: §a%motd%"
+      - "§6This services is full!"
+  ServerEmpty:
+    name: "§a%server%"
+    material: "STAINED_CLAY"
+    subId: 5
+    lore:
+      - "§7Players§8: §a%online_players%§7/§c%max_players%"
+      - "§7Map§8: §a%motd%"
+      - "§aJoin now!"
