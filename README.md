@@ -25,4 +25,5 @@ Spigot 1.8.x (version support will be done in the next update)
 
 ## Authors
 
-* **Espen** - *Anything* - [Espen](https://github.com/EhreGetaken)
+* **Espen** - *SimpleCloud-NPC* - [Espen](https://github.com/EhreGetaken)
+* **Juliarn** - *NPC-Lib* - [Juliarn](https://github.com/juliarn)
