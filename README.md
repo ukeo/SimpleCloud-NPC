@@ -15,13 +15,31 @@ Spigot 1.8.x (version support will be done in the next update)
 ## List of commands
 
 /cloudnpc reload - Reload all npcs.
-/cloudnpc create <playernameOfSkinOwner> <displayName> <shouldLookAtYou> <shouldImitateYou> null(currently unavailable) <serverGroup> <useRealUUIDofPlayerSkin>
+
+/cloudnpc create (playernameOfSkinOwner) (displayName) (shouldLookAtYou) (shouldImitateYou) null(currently unavailable) (serverGroup) (useRealUUIDofPlayerSkin)
 
 ## Built With
 
 * [PaperSpigot](https://papermc.io/downloads)
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [NPC-Lib](https://github.com/juliarn/NPC-Lib) - Handle NPC
+
+## Maven repository
+
+```maven
+<repository>
+    <id>spigotRepo</id>
+    <url>https://imposdev.eu/repo</url>
+</repository>
+```
+
+```maven
+<dependency>
+    <groupId>org.spigotmc</groupId>
+    <artifactId>simplecloudnpc</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 
 ## Authors
 
