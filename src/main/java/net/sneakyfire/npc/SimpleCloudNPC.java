@@ -4,6 +4,7 @@ import com.github.juliarn.npc.NPCPool;
 import net.sneakyfire.npc.commands.Create_Command;
 import net.sneakyfire.npc.listener.InventoryClickListener;
 import net.sneakyfire.npc.listener.NPCInteractListener;
+import net.sneakyfire.npc.metrics.Metrics;
 import net.sneakyfire.npc.util.NPCFileManager;
 import net.sneakyfire.npc.util.UpdateChecker;
 import org.bukkit.Bukkit;
@@ -17,6 +18,7 @@ public class SimpleCloudNPC extends JavaPlugin {
     private String version;
     private NPCFileManager npcFileManager;
     private UpdateChecker updateChecker;
+    private Metrics metrics;
 
     @Override
     public void onEnable() {
@@ -25,6 +27,7 @@ public class SimpleCloudNPC extends JavaPlugin {
         version = this.getDescription().getVersion();
         npcFileManager = new NPCFileManager();
         updateChecker = new UpdateChecker();
+        metrics = new Metrics(this, 	10287);
         getLogger().info("Booting SimpleCloudNPC by Espen#0666 version " + version);
         updateChecker.check();
         if (updateChecker.isAvailable()) {
@@ -60,6 +63,10 @@ public class SimpleCloudNPC extends JavaPlugin {
 
     public static SimpleCloudNPC getInstance() {
         return instance;
+    }
+
+    public Metrics getMetrics() {
+        return metrics;
     }
 
     public String getVersion() {
