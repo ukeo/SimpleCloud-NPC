@@ -24,6 +24,23 @@ Spigot 1.8.x (version support will be done in the next update)
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [NPC-Lib](https://github.com/juliarn/NPC-Lib) - Handle NPC
 
+## Maven repository
+
+```maven
+        <repository>
+            <id>spigotRepo</id>
+            <url>https://imposdev.eu/repo</url>
+        </repository>
+```
+
+```maven
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>simplecloudnpc</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+```
+
 ## Authors
 
 * **Espen** - *SimpleCloud-NPC* - [Espen](https://github.com/EhreGetaken)
