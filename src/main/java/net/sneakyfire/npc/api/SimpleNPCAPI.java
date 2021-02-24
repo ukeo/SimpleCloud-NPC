@@ -1,13 +1,16 @@
 package net.sneakyfire.npc.api;
 
 import com.github.juliarn.npc.NPC;
+import com.github.juliarn.npc.SpawnCustomizer;
 import com.github.juliarn.npc.modifier.AnimationModifier;
+import com.github.juliarn.npc.modifier.MetadataModifier;
 import com.github.juliarn.npc.profile.Profile;
 import net.sneakyfire.npc.SimpleCloudNPC;
 import net.sneakyfire.npc.util.Utils;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -83,7 +86,7 @@ public class SimpleNPCAPI {
         if (!useRealUUID) {
             profile.setUniqueId(UUID.randomUUID());
         }
-        npc = new NPC.Builder(profile).lookAtPlayer(lookClose).imitatePlayer(imitate).location(location).build(SimpleCloudNPC.getInstance().getNpcPool());
+        npc = new NPC.Builder(profile).lookAtPlayer(lookClose).imitatePlayer(imitate).location(location).spawnCustomizer((npc, player) -> npc.metadata().queue(MetadataModifier.EntityMetadata.SKIN_LAYERS, true).send(player)).build(SimpleCloudNPC.getInstance().getNpcPool());
         if (itemInHand != null) {
             //npc.equipment().queue(0, itemInHand);
         }
