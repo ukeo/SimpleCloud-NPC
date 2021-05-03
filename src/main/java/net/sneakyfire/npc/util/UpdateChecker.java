@@ -1,16 +1,18 @@
 package net.sneakyfire.npc.util;
 
 import net.sneakyfire.npc.SimpleCloudNPC;
-import org.bukkit.craftbukkit.libs.jline.internal.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.ProtocolException;
 import java.net.URL;
 
 public class UpdateChecker {
+
+    private final Logger logger;
 
     private String url = "https://imposdev.eu/repo/org/spigotmc/simplecloudnpc/1.0.0/";
     private String id = "version";
@@ -18,7 +20,7 @@ public class UpdateChecker {
     private boolean isAvailable;
 
     public UpdateChecker() {
-
+        this.logger = LoggerFactory.getLogger(UpdateChecker.class);
     }
 
     public boolean isAvailable() {
@@ -30,7 +32,7 @@ public class UpdateChecker {
     }
 
     private boolean checkUpdate() {
-        Log.info("Check for updates...");
+        this.logger.info("Check for updates...");
         try {
             String localVersion = SimpleCloudNPC.getInstance().getVersion();
             HttpsURLConnection connection = (HttpsURLConnection) new URL(url + id).openConnection();
@@ -38,13 +40,13 @@ public class UpdateChecker {
             String raw = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 
             String remoteVersion;
-            if(raw.contains("-")) {
+            if (raw.contains("-")) {
                 remoteVersion = raw.split("-")[0].trim();
             } else {
                 remoteVersion = raw;
             }
 
-            if(!localVersion.equalsIgnoreCase(remoteVersion))
+            if (!localVersion.equalsIgnoreCase(remoteVersion))
                 return true;
 
         } catch (IOException e) {
