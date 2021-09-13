@@ -4,19 +4,19 @@ This is the documentation about SimpleCloud-NPC.
 
 ## Getting Started
 
-Download the plugin [HERE](https://imposdev.eu/repo/org/spigotmc/simplecloudnpc/1.0.0/simplecloudnpc-1.0.0.jar) and put it on your server.
-Also (if any error shows up in the consol related to simplecloudnpc and protocollib) download ProtocolLib for protocol management.
+Download the plugin [HERE](https://imposdev.eu/repo/org/spigotmc/simplecloudnpc/2.0.0/simplecloudnpc-2.0.0.jar) and put it on your server.
+You need to install ProtocolLib onto your server. You can download it [HERE](https://github.com/dmulloy2/ProtocolLib/releases/download/4.7.0/ProtocolLib.jar)
 
 ### Prerequisites
 
 You need SimpleCloud 2.0.0 or above.
-Spigot 1.8.x (version support will be done in the next update)
+Spigot 1.8.x and above. Make sure to set the items in the config correctly for your version
 
 ## List of commands
 
 /cloudnpc reload - Reload all npcs.
 
-/cloudnpc create (playernameOfSkinOwner) (displayName) (shouldLookAtYou) (shouldImitateYou) null(currently unavailable) (serverGroup) (useRealUUIDofPlayerSkin)
+/cloudnpc create (skinName) (displayName) (shouldLookClose) (shouldImitate) (itemInHand) (configName) (serverGroup) (renderSkinLayer)
 
 ## Built With
 
@@ -37,7 +37,7 @@ Spigot 1.8.x (version support will be done in the next update)
 <dependency>
     <groupId>org.spigotmc</groupId>
     <artifactId>simplecloudnpc</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

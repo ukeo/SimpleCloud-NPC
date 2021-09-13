@@ -1,6 +1,6 @@
-package net.sneakyfire.npc.util;
+package eu.imposdev.npc.util;
 
-import net.sneakyfire.npc.SimpleCloudNPC;
+import eu.imposdev.npc.SimpleCloudNPC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public class UpdateChecker {
+public final class UpdateChecker {
 
     private final Logger logger;
 
-    private String url = "https://imposdev.eu/repo/org/spigotmc/simplecloudnpc/1.0.0/";
+    private String url = "https://imposdev.eu/repo/org/spigotmc/simplecloudnpc/";
     private String id = "version";
 
     private boolean isAvailable;

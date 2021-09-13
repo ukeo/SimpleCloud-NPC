@@ -1,28 +1,31 @@
-package net.sneakyfire.npc.util;
+package eu.imposdev.npc.npc.util;
 
-import net.sneakyfire.npc.SimpleCloudNPC;
-import net.sneakyfire.npc.api.SimpleNPCAPI;
+import com.github.juliarn.npc.NPC;
+import eu.imposdev.npc.SimpleCloudNPC;
+import eu.imposdev.npc.npc.SimpleNPCBuilder;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
-public class NPCFileManager {
+@Getter
+public final class NPCFileManager {
 
-    private File f;
-    private YamlConfiguration cfg;
+    private final File f;
+    private final YamlConfiguration cfg;
 
     public NPCFileManager() {
         f = new File(SimpleCloudNPC.getInstance().getDataFolder() + "/storage", "npcStorage.yml");
         cfg = YamlConfiguration.loadConfiguration((File)f);
     }
 
-    public void createNPC(Player player, String configName, Location location, boolean imitate, boolean lookClose, String itemInHand, String serverGroup, String skinName, String displayName, boolean useRealUUID) {
+    public void createNPC(Player player, String configName, Location location, boolean imitate, boolean lookClose, String itemInHand, String serverGroup, UUID skinUUID, String displayName, boolean renderSkinLayer) {
         if (cfg.get("NPC." + configName) != null) {
             player.sendMessage("§7This name already exist in the config!");
             return;
@@ -37,9 +40,9 @@ public class NPCFileManager {
         cfg.set("NPC." + configName + ".settings.lookClose", lookClose);
         cfg.set("NPC." + configName + ".settings.itemInHand", itemInHand);
         cfg.set("NPC." + configName + ".settings.serverGroup", serverGroup);
-        cfg.set("NPC." + configName + ".settings.skin", skinName);
+        cfg.set("NPC." + configName + ".settings.skin", skinUUID.toString());
         cfg.set("NPC." + configName + ".settings.name", displayName);
-        cfg.set("NPC." + configName + ".settings.realUUID", useRealUUID);
+        cfg.set("NPC." + configName + ".settings.renderSkinLayer", renderSkinLayer);
         saveConfig();
     }
 
@@ -61,25 +64,26 @@ public class NPCFileManager {
         }
     }
 
-    public boolean shouldUseRealUUID(String npcConfigName) {
+    public boolean shouldRenderSkinLayers(String npcConfigName) {
         if (cfg.get("NPC." + npcConfigName) != null) {
-            return cfg.getBoolean("NPC." + npcConfigName + ".settings.realUUID");
+            return cfg.getBoolean("NPC." + npcConfigName + ".settings.renderSkinLayer");
         } else {
-            SimpleCloudNPC.getInstance().getLogger().warning("Could not find useRealUUID boolean for NPC " + npcConfigName + "!");
+            SimpleCloudNPC.getInstance().getLogger().warning("Could not find renderSkinLayer boolean for NPC " + npcConfigName + "!");
             return false;
         }
     }
 
-    public ItemStack getItemInHand(String npcConfigName) {
+    public Material getItemInHand(String npcConfigName) {
         if (cfg.get("NPC." + npcConfigName) != null) {
             String itemName = cfg.getString("NPC." + npcConfigName + ".settings.itemInHand");
-            ItemStack itemStack = null;
+            Material material = null;
+            assert itemName != null;
             if (itemName.equalsIgnoreCase("null")) {
-                itemStack = new ItemStack(Material.AIR);
+                material = Material.AIR;
             } else {
-                itemStack = new ItemStack(Material.valueOf(itemName));
+                material = Material.valueOf(itemName);
             }
-            return itemStack;
+            return material;
         } else {
             SimpleCloudNPC.getInstance().getLogger().warning("Could not find itemInHand for NPC " + npcConfigName + "!");
             return null;
@@ -95,7 +99,7 @@ public class NPCFileManager {
         }
     }
 
-    public String getSkinName(String npcConfigName) {
+    public String getSkinUUID(String npcConfigName) {
         if (cfg.get("NPC." + npcConfigName) != null) {
             return cfg.getString("NPC." + npcConfigName + ".settings.skin");
         } else {
@@ -128,19 +132,6 @@ public class NPCFileManager {
         } else {
             SimpleCloudNPC.getInstance().getLogger().warning("Could not find location for NPC " + npcConfigName + "!");
             return null;
-        }
-    }
-
-    public void registerNpcInConfig() {
-        try {
-            cfg.getConfigurationSection("NPC").getKeys(false).forEach(s -> {
-                SimpleNPCAPI simpleNPCAPI = new SimpleNPCAPI(null, getLocationForNPC(s), getSkinName(s), getDisplayName(s), shouldLookClose(s), shouldImitate(s), getItemInHand(s), s, getServerGroup(s), shouldUseRealUUID(s));
-                simpleNPCAPI.loadNpc();
-                SimpleCloudNPC.getInstance().getLogger().info("Registered NPC " + s);
-            });
-        } catch (NullPointerException exc) {
-            SimpleCloudNPC.getInstance().getLogger().info("No npcs in config file found!");
-            exc.printStackTrace();
         }
     }
 

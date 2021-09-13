@@ -1,16 +1,17 @@
-package net.sneakyfire.npc.listener;
+package eu.imposdev.npc.listener;
 
 import com.github.juliarn.npc.NPC;
 import com.github.juliarn.npc.event.PlayerNPCInteractEvent;
+import eu.imposdev.npc.SimpleCloudNPC;
+import eu.imposdev.npc.util.Utils;
 import eu.thesimplecloud.api.CloudAPI;
 import eu.thesimplecloud.api.service.ICloudService;
 import eu.thesimplecloud.api.service.ServiceState;
-import net.sneakyfire.npc.SimpleCloudNPC;
-import net.sneakyfire.npc.util.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -18,10 +19,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
-public class NPCInteractListener implements Listener {
+public class PlayerNPCInteractListener implements Listener {
 
-    @EventHandler
-    public void onNPCInteract(PlayerNPCInteractEvent event) {
+    @EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onPlayerNPCInteract(PlayerNPCInteractEvent event) {
         Player player = event.getPlayer();
         NPC eventNpc = event.getNPC();
         Utils.NPC_CACHE.forEach((npc, s) -> {
@@ -33,7 +34,14 @@ public class NPCInteractListener implements Listener {
                         list.add(iCloudService);
                     }
                 });
-                ItemStack glassPane = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 7);
+                ItemStack glassPane;
+                String[] data = Utils.getServerVersion().split("_");
+                int version = Integer.parseInt(data[1]);
+                if (version >= 13) {
+                    glassPane = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
+                } else {
+                    glassPane = new ItemStack(Material.valueOf("STAINED_GLASS_PANE"), 1, (byte) 7);
+                }
                 ItemMeta glassMeta = glassPane.getItemMeta();
                 glassMeta.setDisplayName("§7");
                 glassPane.setItemMeta(glassMeta);

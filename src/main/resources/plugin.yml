@@ -1,7 +1,7 @@
 name: SimpleCloud-NPC
-version: 1.0
+version: 2.0.0
 author: Espen
-main: net.sneakyfire.npc.SimpleCloudNPC
+main: eu.imposdev.npc.SimpleCloudNPC
 
 commands:
   cloudnpc:
