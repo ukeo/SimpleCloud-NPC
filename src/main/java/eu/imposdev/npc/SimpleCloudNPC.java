@@ -2,6 +2,8 @@ package eu.imposdev.npc;
 
 import com.github.juliarn.npc.NPCPool;
 import eu.imposdev.npc.command.CreateCommand;
+import eu.imposdev.npc.listener.InventoryClickListener;
+import eu.imposdev.npc.listener.PlayerNPCInteractListener;
 import eu.imposdev.npc.npc.util.NPCCreateUtil;
 import eu.imposdev.npc.npc.util.NPCFileManager;
 import eu.imposdev.npc.npc.util.NPCUtil;
@@ -12,6 +14,7 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
@@ -112,7 +115,9 @@ public final class SimpleCloudNPC extends JavaPlugin {
     }
 
     protected void registerListener() {
-
+        PluginManager pluginManager = Bukkit.getPluginManager();
+        pluginManager.registerEvents(new InventoryClickListener(), instance);
+        pluginManager.registerEvents(new PlayerNPCInteractListener(), instance);
     }
 
     protected void loadCommandMap() {
