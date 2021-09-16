@@ -4,7 +4,7 @@ This is the documentation about SimpleCloud-NPC.
 
 ## Getting Started
 
-Download the plugin [HERE](https://imposdev.eu/repo/org/spigotmc/simplecloudnpc/2.0.0/simplecloudnpc-2.0.0.jar) and put it on your server.
+Download the plugin [HERE](https://imposdev.eu/repo/org/spigotmc/simplecloudnpc/2.0.1/simplecloudnpc-2.0.1.jar) and put it on your server.
 You need to install ProtocolLib onto your server. You can download it [HERE](https://github.com/dmulloy2/ProtocolLib/releases/download/4.7.0/ProtocolLib.jar)
 
 ### Prerequisites
@@ -37,7 +37,7 @@ Spigot 1.8.x and above. Make sure to set the items in the config correctly for y
 <dependency>
     <groupId>org.spigotmc</groupId>
     <artifactId>simplecloudnpc</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
 </dependency>
 ```
 
