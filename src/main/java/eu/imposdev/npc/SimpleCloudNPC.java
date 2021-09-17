@@ -7,10 +7,10 @@ import eu.imposdev.npc.listener.PlayerNPCInteractListener;
 import eu.imposdev.npc.npc.util.NPCCreateUtil;
 import eu.imposdev.npc.npc.util.NPCFileManager;
 import eu.imposdev.npc.npc.util.NPCUtil;
+import eu.imposdev.npc.util.Metrics;
 import eu.imposdev.npc.util.ServerVersion;
 import eu.imposdev.npc.util.UpdateChecker;
 import eu.imposdev.npc.util.Utils;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
@@ -97,7 +97,7 @@ public final class SimpleCloudNPC extends JavaPlugin {
         updateChecker = new UpdateChecker();
         updateChecker.check();
         if (updateChecker.isAvailable()) {
-            getLogger().warning("There is an update available! Gop and check out the github page! https://github.com/ukeo/SimpleCloud-NPC");
+            getLogger().warning("There is an update available! Go and check out the github page! https://github.com/ukeo/SimpleCloud-NPC");
         } else {
             getLogger().info("You are running the latest version of SimpleCloud-NPC!");
         }
