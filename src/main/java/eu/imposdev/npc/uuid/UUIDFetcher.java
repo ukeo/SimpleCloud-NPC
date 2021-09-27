@@ -18,7 +18,7 @@ public class UUIDFetcher {
 
     /**
      * Date when name changes were introduced
-     * @see eu.imposdev.modularcore.uuid.UUIDFetcher#getUUIDAt(String, long)
+     * @see eu.imposdev.npc.uuid.UUIDFetcher#getUUIDAt(String, long)
      */
     public static final long FEBRUARY_2015 = 1422748800000L;
 
